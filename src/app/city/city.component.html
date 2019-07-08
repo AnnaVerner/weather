@@ -1,0 +1,55 @@
+  <header>
+  <div id="video-wrapper">
+    <video [autoplay]="'true'" [loop]="true" src="../../assets/images/back.mp4"></video>
+  </div>
+  <div id="container" *ngIf="!loaded && !error">
+    <h1>Weather forecast</h1>
+    <h5>Type your city name and press enter</h5>
+    <div>
+      <input type="text" id="city" (keydown)="onKeyDown($event)" placeholder="e.g. Frankfurt" pattern="^[a-zA-Z]+$">
+      <img src="../../assets/images/search.svg" alt="">
+    </div>
+  </div>
+
+  <div  id="weather-wrapper" *ngIf="loaded && !error"  data-scroll="toggle(.fromLeftIn, .fromLeftOut)">
+     <div id="bar" class="border">
+       <div id="geolocation">
+         <img src="../../assets/images/marker.svg" alt="" id="marker">
+         <span>{{weather.city.name}}, {{weather.city.country}}</span>
+       </div>
+       <div id="search-box">
+         <label for="text">Search city:</label>
+         <input id="text" type="text" (keydown)="onKeyDown($event)">
+         <img src="../../assets/images/search.svg" alt="" id="search">
+       </div>
+     </div>
+    <div id="current-weather" >
+      <p id="c-date" >{{formatDate(weather.list[0].dt_txt)[0]}}, {{(formatDate(weather.list[0].dt_txt)[1])}}
+        <br>{{ formatDate(weather.list[0].dt_txt)[formatDate(weather.list[0].dt_txt).length-1]}}</p>
+      <span id="temperature" >{{getTempInCelsium(weather.list[0].main.temp)}} &deg;C</span>
+      <span id="c-weather-description" >{{weather.list[0].weather[0].main}},<br>{{weather.list[0].weather[0].description}}</span>
+    </div>
+    <div id="scroll-section" class="flex">
+      <h5>Scroll to see full weather forecast.</h5>
+    </div>
+    <div id="week-weather" (window:resize)="onResize($event)" data-scroll="toggle(.fromLeftIn, .fromLeftOut)">
+      <div id="weather-card">
+          <!---->
+          <img src="../../assets/images/icons-svg/{{weather.list[0].weather[0].icon}}.svg" alt="">
+      </div>
+     <app-weather *ngFor="let w of weather.list" [dataWeather]="w" [mobileFlag]="mobile"></app-weather>
+    </div>
+  </div>
+
+  <div id="container" *ngIf="!loaded && error" data-scroll="toggle(.fromLeftIn, .fromLeftOut)">
+    <h1 *ngIf="error" style="font-size: 36px;">Error {{errorCode}}. Please enter valid city name</h1>
+    <h5>Type your city name and press enter</h5>
+    <div>
+      <input type="text" id="city" (keydown)="onKeyDown($event)" placeholder="e.g. Oslo" pattern="^[a-zA-Z]+$">
+      <img src="../../assets/images/search.svg" alt="">
+    </div>
+  </div>
+
+</header>
+
+

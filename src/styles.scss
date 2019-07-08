@@ -1,1 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
+$back: #222;
+$gradient: linear-gradient(to right, #42275a, #734b6d);
+
+body{
+  margin:0px!important;
+  background-color: $back;
+}
+@media  all and (min-width: 950px ) and (max-width: 1150px){
+  #weather-card{
+    width: calc(98vw/4)!important;
+    height: calc(98vw/4)!important;
+  }
+}
+
+
+@media  all and (max-width: 950px) and (min-width: 700px){
+  #weather-card{
+    width: calc(97vw/3)!important;
+    height: calc(98vw/3)!important;
+    p{
+      font-size: 1.1em;
+    }
+    #temp{
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media  all and (max-width: 700px) and (min-width: 600px){
+  #weather-card{
+    width: calc(97vw/2)!important;
+    height: calc(97vw/2)!important;
+    font-size: 14px;
+  }
+}
+@media  all and (max-width: 600px){
+  #week-weather{
+    width: 100%;
+    flex-direction: column;
+  }
+  #weather-card{
+    width: 100%!important;
+  }
+  #bar{
+    label{
+      display: none!important;
+    }
+  }
+  #current-weather{
+    margin:20px 0!important;
+    p{
+      padding: 20px!important;
+    }
+  }
+  table{
+    width: 100%;
+    td{
+      width: calc(100%/4);
+      text-align: center;
+      border-collapse: collapse;
+      border:none;
+      padding: 20px 10px;
+      font-size: 14px;
+    }
+  }
+}
+
+#weather-card{
+  padding: 0!important;
+}
+h1{
+  text-align: center;
+}
+header,#weather-wrapper>*,#container>*, .fade {
+  animation: fadeIn .7s ease-in alternate!important;
+}
+@keyframes fadeIn {
+  0%{
+    opacity: 0;}
+  100%{
+    opacity: 1;
+  }
+
+}

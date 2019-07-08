@@ -1,0 +1,16 @@
+<div id="weather-card" *ngIf="!mobileFlag" class="fade">
+  <p class="date">{{(cityComponent.formatDate(dataWeather.dt_txt)).splice(0, 2)}}</p>
+  <p class="time">{{(cityComponent.formatDate(dataWeather.dt_txt))[cityComponent.formatDate(dataWeather.dt_txt).length-1]}}</p>
+  <p class="temp">{{cityComponent.getTempInCelsium(dataWeather.main.temp)}} &deg;C</p>
+  <p class="description">{{dataWeather.weather[0].description}}</p>
+</div>
+<table *ngIf="mobileFlag" data-scroll="toggle(.fromLeftIn, .fromLeftOut)" class="fade">
+  <tr>
+    <td class="date">{{(cityComponent.formatDate(dataWeather.dt_txt))[0]}}<br>{{(cityComponent.formatDate(dataWeather.dt_txt))[1]}}</td>
+    <td class="time">{{(cityComponent.formatDate(dataWeather.dt_txt))[cityComponent.formatDate(dataWeather.dt_txt).length-1]}}</td>
+    <td class="temp">{{cityComponent.getTempInCelsium(dataWeather.main.temp)}} &deg;C</td>
+    <td class="description">{{dataWeather.weather[0].description}}</td>
+  </tr>
+</table>
+
+
